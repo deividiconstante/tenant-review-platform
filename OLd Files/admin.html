@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Manage Property Reviews</title>
+    <link rel="stylesheet" href="/CSS/styles.css">
+</head>
+<body>
+<!-- Navbar -->
+<header>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/admin">Manage Reviews</a>
+    </nav>
+</header>
+
+<h1>Manage Property Reviews</h1>
+
+<!-- Property Review List -->
+<div id="property-reviews">
+    <h3>Property Reviews:</h3>
+    <table>
+        <thead>
+        <tr>
+            <th>Property Name</th>
+            <th>Review</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody id="review-list">
+        <!-- Dynamically populated -->
+        </tbody>
+    </table>
+</div>
+
+<!-- Edit Review Form -->
+<div class="form-container">
+    <form id="edit-review-form">
+        <label for="edit-comments">Edit Comments:</label>
+        <textarea id="edit-comments" name="editComments" rows="4" required></textarea>
+
+        <button type="submit">Save Changes</button>
+    </form>
+</div>
+
+<!-- Delete Review -->
+<div class="form-container">
+    <form id="delete-review-form">
+        <label for="delete-review">Select Review to Delete:</label>
+        <select id="delete-review" name="deleteReviewId">
+            <!-- Dynamically populated -->
+        </select>
+
+        <button type="submit">Delete Review</button>
+    </form>
+</div>
+
+<script src="/JS/scripts.js"></script>
+</body>
+</html>

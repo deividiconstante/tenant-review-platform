@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tenant - Submit Property Review</title>
+    <link rel="stylesheet" href="/CSS/styles.css">
+</head>
+<body>
+<!-- Navbar -->
+<header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="tenant.html">Submit Review</a>
+        <a href="properties.html">View Properties</a>
+    </nav>
+
+
+</header>
+
+<h1>Submit a Property Review</h1>
+
+<!-- Form to submit a property review -->
+<div class="form-container">
+    <form id="review-form" action="/submitProperty" method="post">
+        <label for="propertyName">Property Name:</label>
+        <input type="text" id="propertyName" name="propertyName" required>
+
+        <label for="location">Location (Address):</label>
+        <input type="text" id="address-input" name="location" placeholder="Enter an address" required>
+
+        <label for="eircode">Eircode:</label>
+        <input type="text" id="eircode" name="eircode" required>
+
+        <label for="hygiene">Hygiene Rating (1-5):</label>
+        <input type="number" id="hygiene" name="hygiene" min="1" max="5" required>
+
+        <label for="crowding">Crowding (1-5):</label>
+        <input type="number" id="crowding" name="crowding" min="1" max="5" required>
+
+        <label for="safety">Safety Rating (1-5):</label>
+        <input type="number" id="safety" name="safety" min="1" max="5" required>
+
+        <label for="landlordRating">Landlord Rating (1-5):</label>
+        <input type="number" id="landlordRating" name="landlordRating" min="1" max="5" required>
+
+        <label for="comments">Comments:</label>
+        <textarea id="comments" name="comments" rows="4" required></textarea>
+
+        <button type="submit">Submit Review</button>
+    </form>
+</div>
+
+<!-- Google Maps Integration for Address -->
+<div id="map"></div>
+
+<script src="/JS/scripts.js"></script>
+</body>
+</html>

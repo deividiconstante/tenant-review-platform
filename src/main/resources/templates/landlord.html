@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landlord Page</title>
+    <link href="/css/styles.css" rel="stylesheet">
+    <!-- Include the external JavaScript file -->
+    <script src="/js/scripts.js" defer></script>
+    <!-- Include Google Places API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBOCJ2YPgxUgLwt0C0m3N9xEOZ2m4AcS5A&libraries=places"></script>
+</head>
+<body class="landlord-page-bg">
+
+<!-- Navigation Bar -->
+<nav class="navbar">
+    <div class="navbar-container">
+        <span class="navbar-title">Landlord Page</span>
+        <a href="/index" class="navbar-link">Home</a>
+    </div>
+</nav>
+
+<!-- Property Search Section -->
+<div class="content-wrapper">
+    <h2>Search for a Property</h2>
+    <form method="GET" action="/landlordSearch">
+        <input id="search-property" name="address" class="form-control" type="text" placeholder="Enter a property address" required>
+        <button type="submit" class="btn-primary">Search</button>
+    </form>
+</div>
+
+<!-- Display Property Details Section -->
+<div id="property-details" class="content-wrapper" style="display: none;">
+    <h2>Property Details</h2>
+    <div id="property-info">
+        <p><strong>Property Name:</strong> <span id="property-name"></span></p>
+        <p><strong>Location:</strong>
+            <span id="property-location" data-address=""></span>
+        </p>
+        <p><strong>Hygiene Rating:</strong> <span id="property-hygiene"></span></p>
+        <p><strong>Safety Rating:</strong> <span id="property-safety"></span></p>
+        <p><strong>Crowding Rating:</strong> <span id="property-crowding"></span></p>
+        <p><strong>Tenant Comments:</strong> <span id="property-comments"></span></p>
+        <p><strong>Landlord Comments:</strong> <span id="property-landlord-comments"></span></p>
+    </div>
+</div>
+
+<!-- Google Maps Section -->
+<div id="property-map" class="content-wrapper" style="width: 100%; height: 400px; margin-bottom: 20px; display: none;">
+    <h2>Google Maps Location</h2>
+</div>
+
+<!-- Google Street View Section -->
+<div id="street-view" class="content-wrapper" style="width: 100%; height: 400px; display: none;">
+    <h2>Google Street View</h2>
+</div>
+
+<!-- Add Comment Section -->
+<div class="content-wrapper" id="add-comment-section" style="display: none;">
+    <h2>Add Your Comments</h2>
+    <form method="POST" action="/submitLandlord">
+        <input type="hidden" id="property-address" name="address">
+        <div class="mb-3">
+            <label for="comment" class="form-label">Comment:</label>
+            <textarea id="comment" name="comment" class="form-control" rows="5" placeholder="Write your comment here..." required></textarea>
+        </div>
+        <button type="submit" class="btn-primary">Submit Comment</button>
+    </form>
+</div>
+
+</body>
+</html>

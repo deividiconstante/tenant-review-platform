@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Listings</title>
+    <link href="/css/styles.css" rel="stylesheet">
+</head>
+<body>
+<!-- Navbar -->
+<header>
+    <nav>
+        <a th:href="@{/}">Home</a>
+        <a th:href="@{/forms}">Submit Review</a>
+        <a th:href="@{/properties}">View Properties</a>
+    </nav>
+</header>
+
+<h1>Property Listings</h1>
+
+<!-- Property list -->
+<section>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Property Name</th>
+            <th>Location</th>
+            <th>Eircode</th>
+            <th>Hygiene</th>
+            <th>Crowding</th>
+            <th>Safety</th>
+            <th>Landlord Rating</th>
+            <th>Comments</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="property : ${properties}">
+            <td th:text="${property.propertyName}">Property Name</td>
+            <td data-address="${property.location}" th:text="${property.location}">Location</td>
+            <td th:text="${property.eircode}">Eircode</td>
+            <td th:text="${property.hygiene}">Hygiene</td>
+            <td th:text="${property.crowding}">Crowding</td>
+            <td th:text="${property.safety}">Safety</td>
+            <td th:text="${property.landlordRating}">Landlord Rating</td>
+            <td th:text="${property.comments}">Comments</td>
+        </tr>
+        </tbody>
+    </table>
+
+</section>
+
+<script th:src="@{/JS/scripts.js}"></script>
+</body>
+</html>

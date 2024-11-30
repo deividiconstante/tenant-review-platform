@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tenant Page</title>
+    <link href="/css/styles.css" rel="stylesheet">
+    <!-- Include the external JavaScript file -->
+    <script src="/js/scripts.js" defer></script>
+    <!-- Include Google Places API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBOCJ2YPgxUgLwt0C0m3N9xEOZ2m4AcS5A&libraries=places"></script>
+</head>
+<body class="tenant-page-bg">
+
+<!-- Navigation Bar -->
+<nav class="navbar">
+    <div class="navbar-container">
+        <span class="navbar-title">Tenant Page</span>
+        <a href="/index" class="navbar-link">Home</a>
+    </div>
+</nav>
+
+<!-- Property Search Section -->
+<div class="content-wrapper">
+    <h2>Search for a Property</h2>
+    <form method="GET" action="/tenantSearch">
+        <input id="search-property" name="address" class="form-control" type="text" placeholder="Enter a property address" required>
+        <button type="submit" class="btn-primary">Search</button>
+    </form>
+</div>
+
+<!-- Display Property Details Section -->
+<div id="property-details" class="content-wrapper" style="display: none;">
+    <h2>Property Details</h2>
+    <!-- Show property details if a match is found -->
+    <div id="property-info">
+        <p><strong>Property Name:</strong> <span id="property-name"></span></p>
+        <p><strong>Location:</strong> <span id="property-location" data-address=""></span></p>
+        <p><strong>Hygiene Rating:</strong> <span id="property-hygiene"></span></p>
+        <p><strong>Safety Rating:</strong> <span id="property-safety"></span></p>
+        <p><strong>Crowding Rating:</strong> <span id="property-crowding"></span></p>
+        <p><strong>Landlord Rating:</strong> <span id="property-landlord-rating"></span></p>
+        <p><strong>Tenant Comments:</strong> <span id="property-comments"></span></p>
+        <p><strong>Landlord Comments:</strong> <span id="property-landlord-comments"></span></p>
+    </div>
+</div>
+
+<!-- Google Maps Section -->
+<div id="property-map" class="content-wrapper" style="width: 100%; height: 400px; margin-bottom: 20px; display: none;">
+    <h2>Google Maps Location</h2>
+</div>
+
+<!-- Google Street View Section -->
+<div id="street-view" class="content-wrapper" style="width: 100%; height: 400px; display: none;">
+    <h2>Google Street View</h2>
+</div>
+
+<!-- Property Review Form -->
+<div class="content-wrapper">
+    <h2>Property Review Form</h2>
+    <form method="POST" action="/submitTenant">
+        <div class="mb-3">
+            <label for="name" class="form-label">Name:</label>
+            <input type="text" id="name" name="name" class="form-control" placeholder="Enter your name" required>
+        </div>
+        <div class="mb-3">
+            <label for="address" class="form-label">Address:</label>
+            <input type="text" id="address" name="address" class="form-control" placeholder="Enter property address" required>
+        </div>
+        <div class="mb-3">
+            <label for="hygiene" class="form-label">Hygiene: Grade 1 to 5</label>
+            <input type="number" id="hygiene" name="hygiene" class="form-control" min="1" max="5" required>
+        </div>
+        <div class="mb-3">
+            <label for="safety" class="form-label">Safety: Grade 1 to 5</label>
+            <input type="number" id="safety" name="safety" class="form-control" min="1" max="5" required>
+        </div>
+        <div class="mb-3">
+            <label for="conservation" class="form-label">Conservation: Grade 1 to 5</label>
+            <input type="number" id="conservation" name="conservation" class="form-control" min="1" max="5" required>
+        </div>
+        <div class="mb-3">
+            <label for="price" class="form-label">Price: Grade 1 to 5</label>
+            <input type="number" id="price" name="price" class="form-control" min="1" max="5" required>
+        </div>
+        <div class="mb-3">
+            <label for="landlord" class="form-label">Landlord: Grade 1 to 5</label>
+            <input type="number" id="landlord" name="landlord" class="form-control" min="1" max="5" required>
+        </div>
+        <div class="mb-3">
+            <label for="comments" class="form-label">Comments:</label>
+            <textarea id="comments" name="comments" class="form-control" rows="4" placeholder="Add your comments"></textarea>
+        </div>
+        <button type="submit" class="btn-primary">Add Property Review</button>
+    </form>
+</div>
+
+</body>
+</html>

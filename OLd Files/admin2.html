@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link href="/css/styles.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar">
+    <a class="navbar-brand" href="#">Admin Dashboard</a>
+    <ul>
+        <li><a href="#search-reviews">Search Reviews</a></li>
+        <li><a href="#moderate-reviews">Moderate Reviews</a></li>
+        <li><a href="/logout">Logout</a></li>
+    </ul>
+</nav>
+<header class="header">
+    <h1>Welcome, Admin!</h1>
+    <p>Oversee and manage reviews and comments across the platform.</p>
+</header>
+
+<!-- Search Reviews Section -->
+<section id="search-reviews" class="content">
+    <h2>Search Reviews</h2>
+    <form>
+        <input type="text" class="form-control" placeholder="Search reviews or users" required>
+        <button class="btn" type="submit">Search</button>
+    </form>
+    <div id="search-results" class="mt-3">
+        <!-- Dynamic search results will appear here -->
+        <p>No reviews found.</p>
+    </div>
+</section>
+
+<!-- Moderate Reviews Section -->
+<section id="moderate-reviews" class="content">
+    <h2>Moderate Reviews and Comments</h2>
+    <form>
+        <div class="mb-3">
+            <label for="review-id" class="form-label">Review ID</label>
+            <input type="text" id="review-id" class="form-control" placeholder="Enter review ID to moderate" required>
+        </div>
+        <div class="mb-3">
+            <label for="action" class="form-label">Action</label>
+            <select id="action" class="form-control">
+                <option value="approve">Approve</option>
+                <option value="reject">Reject</option>
+                <option value="delete">Delete</option>
+            </select>
+        </div>
+        <button class="btn" type="submit">Submit Action</button>
+    </form>
+</section>
+</body>
+</html>

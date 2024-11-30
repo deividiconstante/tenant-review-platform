@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Landlord - Search Properties</title>
+  <link rel="stylesheet" href="/CSS/styles.css">
+</head>
+<body>
+<!-- Navbar -->
+<header>
+  <nav>
+    <a th:href="@{/}">Home</a>
+    <a th:href="@{/forms}">Submit Review</a>
+    <a th:href="@{/properties}">View Properties</a>
+    <a th:href="@{/landlord}">Landlord</a>
+  </nav>
+</header>
+
+<h1>Search and Comment on Properties</h1>
+
+<!-- Property Search Form -->
+<div class="form-container">
+  <form id="search-form">
+    <label for="search-location">Search by Location:</label>
+    <input type="text" id="search-location" name="searchLocation" placeholder="Enter a city or neighborhood">
+
+    <label for="search-eircode">Search by Eircode:</label>
+    <input type="text" id="search-eircode" name="searchEircode" placeholder="Enter Eircode" pattern="[A-Za-z0-9 ]{7}">
+
+    <button type="submit">Search</button>
+  </form>
+</div>
+
+<!-- Search Results -->
+<div id="search-results">
+  <h3>Property Results:</h3>
+  <ul id="results-list"></ul>
+</div>
+
+<!-- Add Comment Section -->
+<div class="form-container">
+  <form id="comment-form">
+    <label for="comment-property">Select Property to Comment:</label>
+    <select id="comment-property" name="propertyId">
+      <!-- Dynamically populated -->
+    </select>
+
+    <label for="landlord-comment">Your Comment:</label>
+    <textarea id="landlord-comment" name="landlordComment" rows="4" required></textarea>
+
+    <button type="submit">Add Comment</button>
+  </form>
+</div>
+
+<script src="/JS/scripts.js"></script>
+</body>
+</html>
