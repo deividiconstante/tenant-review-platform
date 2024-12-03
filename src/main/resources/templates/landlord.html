@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Landlord Page</title>
     <link href="/css/styles.css" rel="stylesheet">
+
     <!-- Include the external JavaScript file -->
     <script src="/js/scripts.js" defer></script>
-    <!-- Include Google Places API -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBOCJ2YPgxUgLwt0C0m3N9xEOZ2m4AcS5A&libraries=places"></script>
+
+    <!-- Include Google Places API (only once) -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBOCJ2YPgxUgLwt0C0m3N9xEOZ2m4AcS5A&libraries=places" defer></script>
 </head>
 <body class="landlord-page-bg">
 
@@ -23,43 +25,53 @@
 <!-- Property Search Section -->
 <div class="content-wrapper">
     <h2>Search for a Property</h2>
-    <form method="GET" action="/landlordSearch">
+    <form id="search-form" method="GET" action="/landlordSearch">
         <input id="search-property" name="address" class="form-control" type="text" placeholder="Enter a property address" required>
-        <button type="submit" class="btn-primary">Search</button>
+        <button id="search-button" type="submit" class="btn-primary">Search</button>
     </form>
 </div>
 
 <!-- Display Property Details Section -->
-<div id="property-details" class="content-wrapper" style="display: none;">
+<div class="content-wrapper">
     <h2>Property Details</h2>
-    <div id="property-info">
-        <p><strong>Property Name:</strong> <span id="property-name"></span></p>
+
+    <!-- Show property details if a match is found -->
+    <div id="property-details" th:if="${property != null}">
+        <p><strong>Property Name:</strong> <span th:text="${property.propertyName}"></span></p>
         <p><strong>Location:</strong>
-            <span id="property-location" data-address=""></span>
+            <span id="property-location" th:text="${property.location}"></span>
         </p>
-        <p><strong>Hygiene Rating:</strong> <span id="property-hygiene"></span></p>
-        <p><strong>Safety Rating:</strong> <span id="property-safety"></span></p>
-        <p><strong>Crowding Rating:</strong> <span id="property-crowding"></span></p>
-        <p><strong>Tenant Comments:</strong> <span id="property-comments"></span></p>
-        <p><strong>Landlord Comments:</strong> <span id="property-landlord-comments"></span></p>
+        <p><strong>Hygiene Rating:</strong> <span th:text="${property.hygiene}"></span></p>
+        <p><strong>Safety Rating:</strong> <span th:text="${property.safety}"></span></p>
+        <p><strong>Crowding Rating:</strong> <span th:text="${property.crowding}"></span></p>
+        <p><strong>Conservation:</strong> <span th:text="${property.conservation}"></span></p>
+        <p><strong>Price:</strong> <span th:text="${property.price}"></span></p>
+        <p><strong>Landlord Rating:</strong> <span th:text="${property.landlordRating}"></span></p>
+        <p><strong>Tenant Comments:</strong> <span th:text="${property.comments}"></span></p>
+        <p><strong>Landlord Comments:</strong> <span th:text="${property.landlordComment}"></span></p>
+    </div>
+
+    <!-- Show error message if no property is found -->
+    <div id="property-error" th:if="${error != null}">
+        <p class="error-message" th:text="${error}"></p>
     </div>
 </div>
 
 <!-- Google Maps Section -->
-<div id="property-map" class="content-wrapper" style="width: 100%; height: 400px; margin-bottom: 20px; display: none;">
+<div id="property-map" class="content-wrapper">
     <h2>Google Maps Location</h2>
 </div>
 
 <!-- Google Street View Section -->
-<div id="street-view" class="content-wrapper" style="width: 100%; height: 400px; display: none;">
+<div id="street-view" class="content-wrapper">
     <h2>Google Street View</h2>
 </div>
 
 <!-- Add Comment Section -->
-<div class="content-wrapper" id="add-comment-section" style="display: none;">
+<div class="content-wrapper" th:if="${property != null}">
     <h2>Add Your Comments</h2>
-    <form method="POST" action="/submitLandlord">
-        <input type="hidden" id="property-address" name="address">
+    <form id="comment-form" method="POST" action="/submitLandlord">
+        <input type="hidden" id="property-address" name="address" th:value="${property.location}">
         <div class="mb-3">
             <label for="comment" class="form-label">Comment:</label>
             <textarea id="comment" name="comment" class="form-control" rows="5" placeholder="Write your comment here..." required></textarea>

@@ -50,6 +50,10 @@ public class Property {
     // Landlord's comments or feedback about the property.
     private String landlordComment;
 
+    // New fields added
+    private int price; // Represents the price information for the property.
+    private int conservation; // Represents the conservation status of the property.
+
     // Getters and Setters allow access to the private fields.
     // They are required for JPA to read and write data.
 
@@ -147,5 +151,21 @@ public class Property {
 
     public void setLandlordComment(String landlordComment) {
         this.landlordComment = landlordComment; // Sets the landlord's comments.
+    }
+
+    public int getPrice() {
+        return price; // Returns the price of the property.
+    }
+
+    public void setPrice(int price) {
+        this.price = price; // Sets the price of the property.
+    }
+
+    public int getConservation() {
+        return conservation; // Returns the conservation status of the property.
+    }
+
+    public void setConservation(int conservation) {
+        this.conservation = conservation; // Sets the conservation status of the property.
     }
 }

@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tenant Page</title>
     <link href="/css/styles.css" rel="stylesheet">
+
     <!-- Include the external JavaScript file -->
     <script src="/js/scripts.js" defer></script>
-    <!-- Include Google Places API -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBOCJ2YPgxUgLwt0C0m3N9xEOZ2m4AcS5A&libraries=places"></script>
+
+    <!-- Include Google Places API (only once) -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBOCJ2YPgxUgLwt0C0m3N9xEOZ2m4AcS5A&libraries=places" defer></script>
 </head>
 <body class="tenant-page-bg">
 
@@ -23,42 +25,52 @@
 <!-- Property Search Section -->
 <div class="content-wrapper">
     <h2>Search for a Property</h2>
-    <form method="GET" action="/tenantSearch">
+    <form id="search-form" method="GET" action="/tenantSearch">
         <input id="search-property" name="address" class="form-control" type="text" placeholder="Enter a property address" required>
-        <button type="submit" class="btn-primary">Search</button>
+        <button id="search-button" type="submit" class="btn-primary">Search</button>
     </form>
 </div>
 
 <!-- Display Property Details Section -->
-<div id="property-details" class="content-wrapper" style="display: none;">
+<div class="content-wrapper">
     <h2>Property Details</h2>
+
     <!-- Show property details if a match is found -->
-    <div id="property-info">
-        <p><strong>Property Name:</strong> <span id="property-name"></span></p>
-        <p><strong>Location:</strong> <span id="property-location" data-address=""></span></p>
-        <p><strong>Hygiene Rating:</strong> <span id="property-hygiene"></span></p>
-        <p><strong>Safety Rating:</strong> <span id="property-safety"></span></p>
-        <p><strong>Crowding Rating:</strong> <span id="property-crowding"></span></p>
-        <p><strong>Landlord Rating:</strong> <span id="property-landlord-rating"></span></p>
-        <p><strong>Tenant Comments:</strong> <span id="property-comments"></span></p>
-        <p><strong>Landlord Comments:</strong> <span id="property-landlord-comments"></span></p>
+    <div id="property-details" th:if="${property != null}">
+        <p><strong>Property Name:</strong> <span th:text="${property.propertyName}"></span></p>
+        <p><strong>Location:</strong>
+            <span id="property-location" th:text="${property.location}"></span>
+        </p>
+        <p><strong>Hygiene Rating:</strong> <span th:text="${property.hygiene}"></span></p>
+        <p><strong>Safety Rating:</strong> <span th:text="${property.safety}"></span></p>
+        <p><strong>Crowding Rating:</strong> <span th:text="${property.crowding}"></span></p>
+        <p><strong>Conservation:</strong> <span th:text="${property.conservation}"></span></p>
+        <p><strong>Price:</strong> <span th:text="${property.price}"></span></p>
+        <p><strong>Landlord Rating:</strong> <span th:text="${property.landlordRating}"></span></p>
+        <p><strong>Tenant Comments:</strong> <span th:text="${property.comments}"></span></p>
+        <p><strong>Landlord Comments:</strong> <span th:text="${property.landlordComment}"></span></p>
+    </div>
+
+    <!-- Show error message if no property is found -->
+    <div id="property-error" th:if="${error != null}">
+        <p class="error-message" th:text="${error}"></p>
     </div>
 </div>
 
 <!-- Google Maps Section -->
-<div id="property-map" class="content-wrapper" style="width: 100%; height: 400px; margin-bottom: 20px; display: none;">
+<div id="property-map" class="content-wrapper">
     <h2>Google Maps Location</h2>
 </div>
 
 <!-- Google Street View Section -->
-<div id="street-view" class="content-wrapper" style="width: 100%; height: 400px; display: none;">
+<div id="street-view" class="content-wrapper">
     <h2>Google Street View</h2>
 </div>
 
 <!-- Property Review Form -->
 <div class="content-wrapper">
     <h2>Property Review Form</h2>
-    <form method="POST" action="/submitTenant">
+    <form id="review-form" method="POST" action="/submitTenant">
         <div class="mb-3">
             <label for="name" class="form-label">Name:</label>
             <input type="text" id="name" name="name" class="form-control" placeholder="Enter your name" required>
@@ -78,6 +90,10 @@
         <div class="mb-3">
             <label for="conservation" class="form-label">Conservation: Grade 1 to 5</label>
             <input type="number" id="conservation" name="conservation" class="form-control" min="1" max="5" required>
+        </div>
+        <div class="mb-3">
+            <label for="crowding" class="form-label">Crowding: Grade 1 to 5</label>
+            <input type="number" id="crowding" name="crowding" class="form-control" min="1" max="5" required>
         </div>
         <div class="mb-3">
             <label for="price" class="form-label">Price: Grade 1 to 5</label>
