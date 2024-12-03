@@ -4,7 +4,7 @@ body {
   margin: 0;
 }
 
-/* Background Styling for Pages */
+/* Index Page Background Styling */
 body.custom-bg {
   background: url('../assets/img/pexels-scottwebb-1029599.jpg') no-repeat center center fixed;
   background-size: cover;
@@ -12,11 +12,12 @@ body.custom-bg {
   color: #fff;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  padding: 20px 0;
+  padding: 0;
 }
 
+/* Tenant Page Background Styling */
 body.tenant-page-bg {
   background: url('../assets/img/pexels-chaitaastic-1918291.jpg') no-repeat center center fixed;
   background-size: cover;
@@ -28,6 +29,7 @@ body.tenant-page-bg {
   align-items: center;
 }
 
+/* Landlord Page Background Styling */
 body.landlord-page-bg {
   background: url('../assets/img/pexels-michael-tuszynski-1134777-2157401.jpg') no-repeat center center fixed;
   background-size: cover;
@@ -39,26 +41,43 @@ body.landlord-page-bg {
   align-items: center;
 }
 
-/* Navbar Styling */
+/* Shared Navigation Bar Styling */
 .navbar {
   background-color: rgba(0, 0, 0, 0.5);
   padding: 10px 20px;
-  margin: 0 10px;
   width: calc(100% - 20px);
   display: flex;
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 0 0 10px 10px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
+/* Align Navbar Buttons to Right */
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.navbar-buttons {
+  margin-left: auto;
+  display: flex;
+  gap: 10px;
+}
+
+/* Navigation Bar Title */
 .navbar-title {
   color: white;
   font-size: 1.5rem;
   font-weight: bold;
 }
 
-.navbar-link {
+/* Navigation Links */
+.navbar .navbar-link {
   background-color: rgba(0, 0, 0, 0.5);
   color: #fff;
   padding: 5px 10px;
@@ -67,8 +86,20 @@ body.landlord-page-bg {
   transition: background-color 0.3s ease-in-out;
 }
 
-.navbar-link:hover {
+.navbar .navbar-link:hover {
   background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Shared Content Wrapper Styling */
+.content-wrapper {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  border-radius: 10px;
+  width: 50%;
+  max-width: 500px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  margin: 40px auto;
 }
 
 /* Footer Styling */
@@ -81,32 +112,20 @@ footer {
   font-size: 0.8rem;
 }
 
-/* Content Wrapper Styling */
-.content-wrapper {
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: 15px;
-  border-radius: 10px;
-  width: 80%; /* Increased width for better usability */
-  max-width: 600px; /* Max width for responsiveness */
-  text-align: center;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-  margin: 20px auto; /* Centered with spacing */
-  display: none; /* Initially hidden for dynamic display */
-}
-
 /* Form Styling */
 form {
   display: flex;
   flex-direction: column;
-  gap: 12px; /* Adjusted spacing for readability */
+  gap: 15px; /* Increased spacing between form elements */
 }
 
 input.form-control,
 textarea.form-control {
   padding: 10px;
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.7);
   border-radius: 5px;
   background-color: rgba(255, 255, 255, 0.9);
+  color: #333;
   width: 100%;
   box-sizing: border-box;
 }
@@ -115,19 +134,20 @@ input.form-control:focus,
 textarea.form-control:focus {
   outline: none;
   box-shadow: 0 0 5px rgba(103, 194, 156, 0.8);
+  border-color: rgba(103, 194, 156, 1);
 }
 
-/* Button Styling */
+/* Shared Button Styling */
 .btn-primary {
   background-color: #67c29c;
   border: none;
   color: #fff;
   font-weight: bold;
-  padding: 10px;
+  padding: 10px 15px;
   border-radius: 5px;
   cursor: pointer;
-  width: 100%;
-  transition: background-color 0.3s, transform 0.2s;
+  text-align: center;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .btn-primary:hover {
@@ -135,20 +155,17 @@ textarea.form-control:focus {
   transform: translateY(-2px);
 }
 
-/* Google Maps and Street View Containers */
-#property-map,
-#street-view {
-  width: 100%;
-  height: 400px;
-  background-color: #333; /* Fallback color for loading */
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  display: none; /* Initially hidden */
+/* Restore Tenant and Landlord Buttons */
+.btn-group {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
 }
 
-/* Show Elements Dynamically */
-.content-wrapper.show,
-#property-map.show,
-#street-view.show {
-  display: block; /* Displayed when data is loaded */
+.btn-group .btn {
+  flex: 1;
+  padding: 10px 15px;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
 }

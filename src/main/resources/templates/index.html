@@ -3,83 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Tenant Review Platform">
-    <meta name="author" content="Suellen Luz">
+    <meta name="description" content="Tenant Review Platform"> <!-- Meta description for SEO -->
     <title>Tenant Voice</title>
-    <link rel="stylesheet" href="/css/styles.css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,300,400,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css"> <!-- Link to the external CSS file for styling -->
 </head>
-<body class="custom-bg">
+<body class="custom-bg"> <!-- Custom background styling for the index page -->
+
 <!-- Navigation Bar -->
-<nav class="navbar-index">
-    <span class="navbar-index-title">Tenant Voice</span>
-    <span class="navbar-index-subtitle">Welcome! Share your experiences as a Tenant or Landlord.</span>
+<nav class="navbar">
+    <div class="navbar-container">
+        <!-- Title displayed in the navigation bar -->
+        <span class="navbar-title">Tenant Voice</span>
+        <!-- Buttons to navigate between the Register and Login sections -->
+        <div class="navbar-buttons">
+            <!-- Button to show the Register section -->
+            <a href="#" class="navbar-link" id="show-register">Register</a>
+            <!-- Link to the Login section -->
+            <a href="#login" class="navbar-link">Login</a>
+        </div>
+    </div>
 </nav>
 
-<!-- Main Section -->
-<div class="content-wrapper">
+<!-- Register Section -->
+<!-- This section is initially hidden using inline CSS style -->
+<div id="register" class="content-wrapper" style="display: none;">
     <h2>Register</h2>
     <form id="register-form">
-        <!-- Name Field -->
+        <!-- Input field for user's name -->
         <div class="form-group">
             <label for="register-name" class="form-label">Name</label>
             <input type="text" id="register-name" class="form-control" placeholder="Enter your name" required>
         </div>
-
-        <!-- Email Field -->
+        <!-- Input field for user's email -->
         <div class="form-group">
             <label for="register-email" class="form-label">Email</label>
             <input type="email" id="register-email" class="form-control" placeholder="Enter your email" required>
         </div>
-
-        <!-- Phone Field -->
+        <!-- Input field for user's phone number -->
         <div class="form-group">
             <label for="register-phone" class="form-label">Phone</label>
             <input type="tel" id="register-phone" class="form-control" placeholder="Enter your phone number" required>
         </div>
-
-        <!-- Password Field -->
+        <!-- File upload for proof of identity -->
         <div class="form-group">
-            <label for="register-password" class="form-label">Create Your Password</label>
-            <input type="password" id="register-password" class="form-control" placeholder="Create a password" required>
+            <label for="proof-upload" class="form-label">Proof</label>
+            <input type="file" id="proof-upload" class="form-control" required>
         </div>
-
-        <!-- File Upload -->
-        <div class="form-group">
-            <label for="proof-upload" class="form-label">Upload proof that you are a Tenant or a Landlord</label>
-            <input type="file" id="proof-upload" class="form-control" accept=".pdf,.jpg,.png" required>
-        </div>
-
-        <!-- User Type Selection -->
-        <p class="form-label">Choose your user type</p>
+        <!-- Buttons to select user type -->
         <div class="btn-group">
             <button type="button" class="btn btn-primary">I am a Tenant</button>
             <button type="button" class="btn btn-primary">I am a Landlord</button>
         </div>
     </form>
+</div>
 
+<!-- Login Section -->
+<!-- This section is always visible -->
+<div id="login" class="content-wrapper">
     <h2>Login</h2>
     <form id="login-form">
-        <!-- Email Field -->
+        <!-- Input field for user's email -->
         <div class="form-group">
             <label for="login-email" class="form-label">Email</label>
             <input type="email" id="login-email" class="form-control" placeholder="Enter your email" required>
         </div>
-
-        <!-- Password Field -->
+        <!-- Input field for user's password -->
         <div class="form-group">
             <label for="login-password" class="form-label">Password</label>
             <input type="password" id="login-password" class="form-control" placeholder="Enter your password" required>
         </div>
-        <button type="submit" class="btn btn-primary">Login</button>
+        <!-- Button to submit the login form -->
+        <button type="submit" class="btn-primary">Login</button>
     </form>
 </div>
 
 <!-- Footer -->
-<footer class="index-footer">
+<!-- Footer for the page -->
+<footer>
     © 2024 Tenant Voice. All Rights Reserved.
 </footer>
 
+<!-- Link to the external JavaScript file for interactivity -->
 <script src="/js/scripts.js"></script>
 </body>
 </html>
