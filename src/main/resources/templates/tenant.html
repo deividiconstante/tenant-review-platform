@@ -30,28 +30,35 @@
 </div>
 
 <!-- Display Property Details Section -->
-<div id="property-details" class="content-wrapper" style="display: none;">
+<div class="content-wrapper">
     <h2>Property Details</h2>
     <!-- Show property details if a match is found -->
-    <div id="property-info">
-        <p><strong>Property Name:</strong> <span id="property-name"></span></p>
-        <p><strong>Location:</strong> <span id="property-location" data-address=""></span></p>
-        <p><strong>Hygiene Rating:</strong> <span id="property-hygiene"></span></p>
-        <p><strong>Safety Rating:</strong> <span id="property-safety"></span></p>
-        <p><strong>Crowding Rating:</strong> <span id="property-crowding"></span></p>
-        <p><strong>Landlord Rating:</strong> <span id="property-landlord-rating"></span></p>
-        <p><strong>Tenant Comments:</strong> <span id="property-comments"></span></p>
-        <p><strong>Landlord Comments:</strong> <span id="property-landlord-comments"></span></p>
+    <div th:if="${property != null}">
+        <p><strong>Property Name:</strong> <span th:text="${property.propertyName}"></span></p>
+        <p><strong>Location:</strong>
+            <span id="property-location" data-location="${property.location}" th:text="${property.location}"></span>
+        </p>
+        <p><strong>Hygiene Rating:</strong> <span th:text="${property.hygiene}"></span></p>
+        <p><strong>Safety Rating:</strong> <span th:text="${property.safety}"></span></p>
+        <p><strong>Crowding Rating:</strong> <span th:text="${property.crowding}"></span></p>
+        <p><strong>Landlord Rating:</strong> <span th:text="${property.landlordRating}"></span></p>
+        <p><strong>Tenant Comments:</strong> <span th:text="${property.comments}"></span></p>
+        <p><strong>Landlord Comments:</strong> <span th:text="${property.landlordComment}"></span></p>
+    </div>
+
+    <!-- Show error message if no property is found -->
+    <div th:if="${error != null}">
+        <p class="error-message" th:text="${error}"></p>
     </div>
 </div>
 
 <!-- Google Maps Section -->
-<div id="property-map" class="content-wrapper" style="width: 100%; height: 400px; margin-bottom: 20px; display: none;">
+<div id="property-map" class="content-wrapper" style="width: 100%; height: 400px; margin-bottom: 20px;">
     <h2>Google Maps Location</h2>
 </div>
 
 <!-- Google Street View Section -->
-<div id="street-view" class="content-wrapper" style="width: 100%; height: 400px; display: none;">
+<div id="street-view" class="content-wrapper" style="width: 100%; height: 400px;">
     <h2>Google Street View</h2>
 </div>
 
@@ -94,6 +101,40 @@
         <button type="submit" class="btn-primary">Add Property Review</button>
     </form>
 </div>
+
+<script>
+    // Ensure Google Maps initializes based on the property details
+    window.addEventListener("load", function() {
+        const mapElement = document.getElementById("property-map");
+        const streetViewElement = document.getElementById("street-view");
+        const propertyLocationElement = document.getElementById("property-location");
+
+        if (propertyLocationElement) {
+            const address = propertyLocationElement.getAttribute("data-location");
+            if (address) {
+                const geocoder = new google.maps.Geocoder();
+                geocoder.geocode({ address: address }, function(results, status) {
+                    if (status === "OK") {
+                        const location = results[0].geometry.location;
+
+                        // Initialize Map
+                        new google.maps.Map(mapElement, {
+                            center: location,
+                            zoom: 15,
+                        });
+
+                        // Initialize Street View
+                        new google.maps.StreetViewPanorama(streetViewElement, {
+                            position: location,
+                            pov: { heading: 34, pitch: 10 },
+                            zoom: 1,
+                        });
+                    }
+                });
+            }
+        }
+    });
+</script>
 
 </body>
 </html>
